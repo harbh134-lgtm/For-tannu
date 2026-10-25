@@ -1,0 +1,399 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Message for You 💗</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Trebuchet MS", sans-serif;
+    text-align: center;
+    color: #c52b68;
+    background: linear-gradient(135deg, #ffe0ed, #ffb6d2, #ffd6e7);
+    overflow-x: hidden;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 30px 18px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.7s ease;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: clamp(2rem, 7vw, 3rem);
+}
+
+p {
+    line-height: 1.7;
+}
+
+.scene {
+    padding: 35px 15px;
+    width: min(400px, 90vw);
+    border-radius: 30px;
+    background: linear-gradient(145deg, #ffc6dd, #ff9fc5);
+    box-shadow: 0 15px 35px #d94d8540;
+}
+
+.couple {
+    font-size: clamp(4rem, 18vw, 6rem);
+    margin: 15px 0;
+}
+
+.heart-button {
+    width: 110px;
+    height: 100px;
+    border: none;
+    background: #ff4f91;
+    color: white;
+    font-size: 48px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #d83270;
+    transition: 0.2s;
+}
+
+.heart-button:hover {
+    transform: scale(1.1);
+}
+
+button {
+    font-family: inherit;
+}
+
+.primary {
+    background: #ff4f91;
+    color: white;
+    border: none;
+    padding: 15px 28px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #d83270;
+    margin: 12px;
+}
+
+.envelope {
+    width: min(320px, 85vw);
+    height: 200px;
+    border-radius: 15px;
+    border: 3px solid white;
+    background: linear-gradient(135deg, #ff8fba, #ffd1e2);
+    box-shadow: 0 15px 30px #d94d8540;
+    font-size: 24px;
+    color: #a51e56;
+    cursor: pointer;
+    margin: 25px 0;
+}
+
+.letter {
+    width: min(550px, 94vw);
+    padding: 30px 25px;
+    border-radius: 25px;
+    background: #fff9fc;
+    border: 3px solid #ffb1ce;
+    box-shadow: 0 15px 35px #d94d8530;
+}
+
+.letter p {
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.choice-area {
+    min-height: 150px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.yes-button {
+    background: #ff4f91;
+    color: white;
+    padding: 17px 35px;
+    border: none;
+    border-radius: 35px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.no-button {
+    background: #f4dce7;
+    color: #a47b8c;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.big-heart {
+    font-size: 130px;
+    animation: heartbeat 0.8s infinite alternate;
+}
+
+@keyframes heartbeat {
+    to { transform: scale(1.12); }
+}
+
+.falling-heart {
+    position: fixed;
+    top: -30px;
+    pointer-events: none;
+    z-index: 10;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti {
+    position: fixed;
+    top: -30px;
+    z-index: 20;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1: PROPOSAL INTRO -->
+<section class="screen active" id="intro">
+
+    <div class="scene">
+        <div class="couple">🧎🏻‍♂️💐👩🏻</div>
+        <p>A little courage, a little love ❤️</p>
+    </div>
+
+    <h1>There is a message<br>from someone… 💌</h1>
+
+    <p>Someone who smiles a little extra whenever they talk to you. 🥹</p>
+
+    <button class="heart-button" onclick="openEnvelope()">💗</button>
+
+    <p>Tap the heart 🎀</p>
+
+</section>
+
+
+<!-- PAGE 2: ENVELOPE -->
+<section class="screen" id="envelopeScreen">
+
+    <h1>A tiny letter for you 💗</h1>
+
+    <p>I put a little piece of my heart in here… 🥹</p>
+
+    <button class="envelope" onclick="openLetter()">
+        💌<br><br>
+        Tap to Open 🎀
+    </button>
+
+</section>
+
+
+<!-- PAGE 3: CONFESSION LETTER -->
+<section class="screen" id="letterScreen">
+
+    <div class="letter">
+
+        <h1>For you, cutie 🥹❤️</h1>
+
+        <p>
+        You know whattt? 🥹❤️ We’ve been talking for so long,
+        and somewhere along the way, you became someone really
+        special to me. I don’t know when I started catching
+        feelings for you, but now I know that you mean more to
+        me than just a friend. I love talking to you, making you
+        smile, and having you in my life. And honestly, I don’t
+        wanna keep these feelings to myself anymore, so here I
+        am confessing that I really, really like you, and I think
+        I’m falling for you. 🫶🏻🎀❤️
+        </p>
+
+    </div>
+
+    <button class="primary" onclick="showQuestion()">
+        One little question… 💗
+    </button>
+
+</section>
+
+
+<!-- PAGE 4: YES OR NO -->
+<section class="screen" id="questionScreen">
+
+    <h1>So… will you be mine? 💖</h1>
+
+    <p>You've made someone very nervous. 🙈</p>
+
+    <div class="choice-area" id="choiceArea">
+
+        <button class="yes-button" onclick="sayYes()">
+            YES 💗
+        </button>
+
+        <button class="no-button" id="noButton">
+            No 🙈
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PAGE 5: CELEBRATION -->
+<section class="screen" id="yesScreen">
+
+    <div class="big-heart">💖</div>
+
+    <h1>YAYYYYY!! 🥹🎉</h1>
+
+    <p>
+        You just made my heart the happiest ever! ❤️
+        <br><br>
+        Here's to more smiles, more talks,
+        and beautiful memories together. 🫶🏻🎀
+    </p>
+
+    <div style="font-size: 45px;">💐 🎉 💕 🎀</div>
+
+</section>
+
+
+<script>
+
+// Switch between pages
+function showScreen(id) {
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+// Open envelope page
+function openEnvelope() {
+    makeConfetti(70);
+    showScreen("envelopeScreen");
+}
+
+// Open confession letter
+function openLetter() {
+    makeConfetti(25);
+    showScreen("letterScreen");
+}
+
+// Show proposal question
+function showQuestion() {
+    showScreen("questionScreen");
+}
+
+// YES BUTTON
+function sayYes() {
+    showScreen("yesScreen");
+    makeConfetti(150);
+}
+
+// Confetti and hearts explosion
+function makeConfetti(amount) {
+    const emojis = ["💖", "💕", "💗", "✨", "🎉", "💘", "🎀"];
+
+    for (let i = 0; i < amount; i++) {
+        const item = document.createElement("span");
+
+        item.className = "confetti";
+        item.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.fontSize = (15 + Math.random() * 25) + "px";
+        item.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+        document.body.appendChild(item);
+
+        setTimeout(() => item.remove(), 5500);
+    }
+}
+
+// Moving NO button
+const noButton = document.getElementById("noButton");
+
+function moveNoButton() {
+    noButton.style.position = "fixed";
+
+    const maxX = window.innerWidth - noButton.offsetWidth - 10;
+    const maxY = window.innerHeight - noButton.offsetHeight - 10;
+
+    noButton.style.left = Math.max(10, Math.random() * maxX) + "px";
+    noButton.style.top = Math.max(10, Math.random() * maxY) + "px";
+}
+
+noButton.addEventListener("pointerenter", moveNoButton);
+
+noButton.addEventListener("touchstart", function(event) {
+    event.preventDefault();
+    moveNoButton();
+}, { passive: false });
+
+noButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    moveNoButton();
+});
+
+// Floating hearts in the background
+function createFallingHeart() {
+    const heart = document.createElement("span");
+
+    heart.className = "falling-heart";
+
+    const symbols = ["💗", "💕", "♥", "💖", "♡"];
+
+    heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 6) + "s";
+    heart.style.color = "#ff4f91";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 11000);
+}
+
+setInterval(createFallingHeart, 400);
+
+</script>
+
+</body>
+</html>
+```
